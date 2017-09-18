@@ -1,0 +1,21 @@
+{
+  "name": "microservicesfall17",
+  "version": "0.0.0",
+  "description": "contains the microservices fall 17",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo \"Running Server in Production Mode\" && ./scripts/productionRun.sh",
+    "dev": "echo \"Running Server in Development Mode\" && ./scripts/devRun.sh"
+  },
+  "author": "CI_dev",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "body-parser": "~1.17.1",
+    "express": "~4.15.2"
+  },
+  "devDependencies": {
+    "loglevel": "^1.4.1",
+    "nodemon": "~1.11.0", 
+    "newman": "^3.6.0"
+  }
+}
