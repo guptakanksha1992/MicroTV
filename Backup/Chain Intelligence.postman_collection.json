@@ -1,0 +1,377 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Chain Intelligence",
+		"_postman_id": "7bf394ef-7db0-68f1-4a20-0318343287c4",
+		"description": "API Documentation for Chain Intelligence Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Version 1 Ethereum System Documenation",
+			"description": "/v1/eth landing page for API docs",
+			"item": [
+				{
+					"name": "/",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Body matches string\"] = responseBody.has(\"Chain Intelligence Documentation\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/v1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Main Landing Page"
+					},
+					"response": []
+				},
+				{
+					"name": "/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Body matches string\"] = responseBody.has(\"Chain Intelligence Documentation\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/v1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Main Landing Page for version 1 of API"
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/eth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Body matches string\"] = responseBody.has(\"Ethereum\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/v1/eth/",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Main Landing Page for version 1 ethereum module of API"
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/eth/blocks/blockbynumber/2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Response contains block number 2\"] = jsonData.number === 2;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/v1/eth/blocks/blockbynumber/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Acquiring a block by blocknumber"
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/eth/blocks/blockbynumber/2?subdata=nonce",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Response contains nonce\"] = jsonData.nonce === \"0xb853fa261a86aa9e\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/v1/eth/blocks/blockbynumber/2?subdata=nonce",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Acquiring a block by blocknumber and only selectively picking the nonce data field"
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/eth/blocks/blockbynumber/asdfjk",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"",
+									"",
+									"tests[\"Body matches string\"] = responseBody.has(\"error\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/v1/eth/blocks/blockbynumber/asdfjlk",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Example of a failed API request"
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/eth/blocks/blockbyhash/<hash>",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Response contains correct block number 47321\"] = jsonData.number  === 47321;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/v1/eth/blocks/blockbyhash/0x0354e1a23c0d7fa0fbad5338e18e084b330c6778afce4a3f400136bdad78cfd0",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting a block by hash"
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/eth/blocks/blockbyhash/<hash>?subdata=gasLimit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Response contains gasLimit\"] = jsonData.gasLimit == \"0xb0bf\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/v1/eth/blocks/blockbyhash/0x0354e1a23c0d7fa0fbad5338e18e084b330c6778afce4a3f400136bdad78cfd0?subdata=gasLimit",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting a block by hash and a sub-feature of it"
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/eth/blocks/blockbyhash/<incorrectHash>?subdata=XX",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"",
+									"",
+									"tests[\"Body matches string\"] = responseBody.has(\"error\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/v1/eth/blocks/blockbyhash/0x0358e18e084b330c6778afce4a3f400136bdad78cfd0?subdata=gasLimit",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Response generated with a failed hash as input"
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/eth/transactions/transactioninblockbynumber/49124/atindex/0",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var json = JSON.parse(responseBody); ",
+									"tests[\"Body has correct block hash\"] = json.blockHash == \"0x1cb17043a0393eec79ac4adb10cec32370bd65a4b0eaff89a6f0e987a306df84\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/v1/eth/transactions/transactioninblockbynumber/49124/atindex/0",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Successful indexing of the transaction in block"
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/eth/transactions/transactioninblockbynumber/47321/atindex/5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"",
+									"tests[\"Body has error message\"] = responseBody.has(\"error\"); ",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/v1/eth/transactions/transactioninblockbynumber/47321/atindex/5",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Unsuccessful indexing of the transaction in block example"
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/eth/transactions/transactioninblockbyhash/0xa921f40a91577be2f92a2cfe5b25028eb896f372719ff64ad4dedc39ffe3b366/atindex/1?subdata=input",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var json = JSON.parse(responseBody); ",
+									"tests[\"Body has correct input\"] = json.input == \"0x454e51343033375047\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/v1/eth/transactions/transactioninblockbyhash/0xa921f40a91577be2f92a2cfe5b25028eb896f372719ff64ad4dedc39ffe3b366/atindex/0?subdata=input",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Successful indexing of the transaction in block by hash"
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/eth/transactions/transactionbyhash/0x41738785c4330ce9531aed26b21b9cfba6f27b9183d11355f4d9522211c2a44e",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var json = JSON.parse(responseBody); ",
+									"tests[\"Body has correct block hash\"] = json.blockHash == \"0xc3389d535ebbaae818c492901ca40995a2c9b644af71f8d57d7a93e6a0871bcf\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/v1/eth/transactions/transactionbyhash/0x41738785c4330ce9531aed26b21b9cfba6f27b9183d11355f4d9522211c2a44e",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Get a transaction by its hash"
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/eth/transactionbyhash/0xe51cad0e6563ccdcde9a844c0775b496e9852ab942001928d22645011b247380?subdata=from",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var json = JSON.parse(responseBody); ",
+									"tests[\"Body has correct source (from) address\"] = json.from == \"0xafcc7dbb8356d842d43ae7e23c8422b022a30803\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "http://localhost:8080/v1/eth/transactions/transactionbyhash/0xe51cad0e6563ccdcde9a844c0775b496e9852ab942001928d22645011b247380?subdata=from",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Get a transaction's value by its hash"
+					},
+					"response": []
+				},
+				{
+					"name": "ONLY USED FOR AUTOMATED BUILDS TO KILL PROGRAM",
+					"request": {
+						"url": "http://localhost:8080/kill",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "nice cleanup endpoint"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
